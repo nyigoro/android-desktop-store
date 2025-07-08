@@ -2,11 +2,12 @@
   "name": "gui",
   "private": true,
   "version": "0.1.0",
-  "type": "module",
   "main": "electron/main.ts",
   "scripts": {
-    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
-    "build": "vite build && electron-builder",
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && npm run electron\"",
+    "electron": "tsc -p tsconfig.electron.json && electron ./dist-electron/main.js",
+    "build": "vite build && tsc -p tsconfig.electron.json && electron-builder",
+    "lint:fix": "eslint . --fix",
     "lint": "eslint .",
     "preview": "vite preview"
   },
